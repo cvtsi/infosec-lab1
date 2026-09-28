@@ -77,20 +77,30 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Build project
+        run: ./gradlew build --no-daemon
+
       - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: ./gradlew dependencyCheckAnalyze --no-daemon
+          JAVA_HOME: /opt/jdk
+        with:
+          project: 'lab1'
+          path: '.'
+          format: 'ALL'
+          out: 'reports'
 
       - name: Upload HTML Report as Artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: dependency-check-html
-          path: build/reports/dependency-check-report.html
+          path: reports/dependency-check-report.html
 
       - name: Upload SARIF to GitHub Security
         if: always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: build/reports/dependency-check-report.sarif
+          sarif_file: reports/dependency-check-report.sarif
