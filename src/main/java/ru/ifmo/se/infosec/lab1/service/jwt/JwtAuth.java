@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Optional;
 
 @ApplicationScoped
-@AutoApplySession
 public class JwtAuth implements HttpAuthenticationMechanism {
 
     @Inject
