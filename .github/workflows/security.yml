@@ -78,6 +78,8 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run OWASP Dependency-Check
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: ./gradlew dependencyCheckAnalyze --no-daemon
 
       - name: Upload HTML Report as Artifact

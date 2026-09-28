@@ -30,4 +30,5 @@ dependencies {
 dependencyCheck {
     failBuildOnCVSS = 3.0
     formats = ['HTML', 'SARIF']
+    nvd.apiKey = providers.environmentVariable('NVD_API_KEY').orNull
 }
