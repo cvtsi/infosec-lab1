@@ -55,3 +55,7 @@
   Провайдер реализации JPQL автоматически экранирует специальные символы и передает параметры отдельно от тела SQL-запроса.
 * Ответы API возвращаются с заголовком `Content-Type: application/json`.
   Современные браузеры не исполняют JavaScript-код, полученный в ответах XHR/Fetch с типом application/json.
+
+## Скриншот успешного прохождения пайплайна
+![GH CI OK](media/action-ok.png)
+https://github.com/cvtsi/infosec-lab1/actions/runs/36459438103
